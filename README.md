@@ -12,11 +12,11 @@ Prof. Engling and Chase P. Miller • D21
 #### Noise Function Parameters
 - Seed
 - Scale
-- Amplitude (multiply result by a constant)
-- Frequency (multiply x and y by a constant)
-- Octaves (add another one with double the frequency)
-- Persistence (A(x) = P*A(x-1))
-- Lacunarity (F(x)=L*F(x-1))
+- Amplitude
+- Frequency
+- Octaves
+- Persistence
+- Lacunarity
 #### Basic Noise Functions
 - White Noise
 - Value Noise

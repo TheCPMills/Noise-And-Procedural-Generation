@@ -32,7 +32,6 @@ Prof. Engling and Chase P. Miller • D21
 #### Stitching and Tiling Noise Maps
 #### Procedurally Generated Content
 
-
 ## Resources
 - [The Two Types of Random](https://youtu.be/dwI5b-wRLic)
 - [How Does Procedural Generation Work?](https://youtu.be/-POwgollFeY)

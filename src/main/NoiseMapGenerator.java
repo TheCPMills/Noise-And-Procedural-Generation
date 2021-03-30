@@ -17,7 +17,7 @@ public class NoiseMapGenerator {
         }
         try {
             ImageIO.write(image, "png", new File(noise.getClass().getSimpleName() + "Noise.png"));
-            GaussianFilter.blur("WhiteNoise.png", 1);
+            GaussianBlur.blur("WhiteNoise.png", 1);
         } catch (IOException ex) {
         }
     }

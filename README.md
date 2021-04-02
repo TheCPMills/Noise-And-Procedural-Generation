@@ -27,6 +27,7 @@ Prof. Engling and Chase P. Miller • D21
 #### Lattice-Based Noise Functions
 - Perlin Noise
 - Simplex Noise
+- Fractal Noise (using the Diamond-Square Algorithm)
 - Ridged Multifractal Noise
 #### Introduction to Noise Maps
 #### Stitching and Tiling Noise Maps

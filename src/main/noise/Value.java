@@ -1,4 +1,4 @@
-package main;
+package main.noise;
 
 public class Value extends Noise {
 	private double frequency = 0.01;

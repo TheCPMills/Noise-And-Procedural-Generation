@@ -1,7 +1,7 @@
-package main;
+package main.generators;
 
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
+import java.awt.image.*;
+import javax.imageio.*;
 import java.io.*;
 
 public class TerrainGenerator {

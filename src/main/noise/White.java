@@ -1,4 +1,6 @@
-package main;
+package main.noise;
+
+import main.util.*;
 
 public class White extends Noise {
 

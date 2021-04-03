@@ -1,4 +1,4 @@
-package main;
+package main.util;
 
 public class Vector3 {
     double x, y, z;

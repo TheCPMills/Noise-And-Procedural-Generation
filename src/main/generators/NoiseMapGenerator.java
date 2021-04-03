@@ -1,4 +1,7 @@
-package main;
+package main.generators;
+
+import main.util.*;
+import main.noise.*;
 
 import java.awt.image.*;
 import javax.imageio.*;

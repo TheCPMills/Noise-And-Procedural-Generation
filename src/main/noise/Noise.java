@@ -1,4 +1,4 @@
-package main;
+package main.noise;
 
 public abstract class Noise {
     protected long seed;

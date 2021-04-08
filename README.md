@@ -34,6 +34,8 @@ Prof. Engling and Chase P. Miller • D21
 #### Stitching, Layering, and Tiling Noise Maps
 - Fractal Noise
    - Diamond Square Algorithm
+   - Fractal Brownian Motion
+   - Ridged Multifractal Noise
 - Marching Squares / Marching Cubes
 - Gaussian Blur
 

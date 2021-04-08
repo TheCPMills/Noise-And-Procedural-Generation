@@ -9,6 +9,7 @@ Prof. Engling and Chase P. Miller • D21
 - Linear Congruential Generator
 - Weyl Middle-Square Method
 - Canonical Random Function
+
 #### Noise Function Parameters
 - Seed
 - Scale
@@ -17,21 +18,29 @@ Prof. Engling and Chase P. Miller • D21
 - Octaves
 - Persistence
 - Lacunarity
-#### Basic Noise Functions
+
+#### Interpolation Types
+- Linear
+- Hermite
+- Quintic
+
+#### Noise Functions
 - White Noise
 - Value Noise
-     - Linear
-     - Hermite
-     - Quintic
 - Cellular Noise
-#### Lattice-Based Noise Functions
 - Perlin Noise
 - Simplex Noise
-- Fractal Noise (using the Diamond-Square Algorithm)
-- Ridged Multifractal Noise
-#### Introduction to Noise Maps
-#### Stitching and Tiling Noise Maps
+
+#### Stitching, Layering, and Tiling Noise Maps
+- Fractal Noise
+   - Diamond Square Algorithm
+- Marching Squares / Marching Cubes
+- Gaussian Blur
+
 #### Procedurally Generated Content
+- 2D Terrain
+- 2.5D Terrain (Heightmaps)
+- 3D Terrain
 
 ## Resources
 - [The Two Types of Random](https://youtu.be/dwI5b-wRLic)

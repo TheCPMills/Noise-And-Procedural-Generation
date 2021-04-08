@@ -21,6 +21,10 @@ public class Random {
         }
     }
 
+    public static double next(double x, double y) {
+        return canon.canon(x, y);
+    }
+
     public static void setSeed(long seed) {
         lcg = new LCG(seed);
         weyl = new Weyl(seed);
@@ -66,6 +70,11 @@ class Canon {
 
     public double canon() {
         Vector3 coord = new Vector2(Math.random(), Math.random());
+        return ((Math.sin(seed + coord.dot(new Vector3(12.9898, 78.233, 37.719)))) * 43758.5453) % 1;
+    }
+
+    public double canon(double x, double y) {
+        Vector3 coord = new Vector2(x, y);
         return ((Math.sin(seed + coord.dot(new Vector3(12.9898, 78.233, 37.719)))) * 43758.5453) % 1;
     }
 }

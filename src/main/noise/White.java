@@ -1,15 +1,19 @@
 package main.noise;
 
-import main.util.*;
-
 public class White extends Noise {
 
-    public White(long seed) {
+    public White(int seed) {
         super(seed);
     }
 
     public double getNoise(double x, double y) {
-        Vector3 coord = new Vector2(x, y);
-        return ((Math.sin(seed + coord.dot(new Vector3(12.9898, 78.233, 37.719)))) * 43758.5453) % 1;
+        x *= frequency * 1000000;
+        y *= frequency * 1000000;
+
+        int n = seed;
+        n ^= 1619 * (int) x;
+        n ^= 31337 * (int) y;
+
+        return (n * n * n * 60493) / (float) 2147483648.0;
     }
 }

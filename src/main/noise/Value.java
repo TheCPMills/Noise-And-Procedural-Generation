@@ -1,9 +1,7 @@
 package main.noise;
 
 public class Value extends Noise {
-	private double frequency = 0.01;
-
-    public Value(long seed) {
+    public Value(int seed) {
         super(seed);
     }
 
@@ -26,7 +24,7 @@ public class Value extends Noise {
 	}
 
     private double hashValues(int x, int y) {
-		int n = (int) seed;
+		int n = seed;
 		n ^= 1619 * x;
 		n ^= 31337 * y;
 

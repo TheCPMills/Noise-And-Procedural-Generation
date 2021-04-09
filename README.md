@@ -37,7 +37,7 @@ Prof. Engling and Chase P. Miller • D21
    - Random Midpoint Displacement (Diamond Square Algorithm / Midpoint Displacement Algorithm)
    - Fractal Brownian Motion
    - Billow Fractal Noise
-   - Ridged Multifractal Noise
+   - Rigid Multifractal Noise
 - Marching Squares / Marching Cubes
 - Gaussian Blur
 

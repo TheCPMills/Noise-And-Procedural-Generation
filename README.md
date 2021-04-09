@@ -34,7 +34,7 @@ Prof. Engling and Chase P. Miller • D21
 
 #### Stitching, Layering, and Tiling Noise Maps
 - Fractal Noise
-   - Diamond Square Algorithm
+   - Random Midpoint Displacement (Diamond Square Algorithm / Midpoint Displacement Algorithm)
    - Fractal Brownian Motion
    - Billow Fractal Noise
    - Ridged Multifractal Noise

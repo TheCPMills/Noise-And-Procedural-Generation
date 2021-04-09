@@ -37,7 +37,7 @@ Prof. Engling and Chase P. Miller • D21
    - Diamond Square Algorithm
    - Fractal Brownian Motion
    - Ridged Multifractal Noise
-   - Billowed Fractal Noise
+   - Billow Fractal Noise
 - Marching Squares / Marching Cubes
 - Gaussian Blur
 

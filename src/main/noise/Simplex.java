@@ -31,7 +31,6 @@ public class Simplex extends Noise {
             i1 = 0;
             j1 = 1;
         }
-
         
         double x1 = x0 - i1 + G2;
         double y1 = y0 - j1 + G2;
@@ -45,7 +44,7 @@ public class Simplex extends Noise {
             n0 = 0;
         else {
             t *= t;
-            n0 = t * t * GradCoord2D(seed, i, j, x0, y0);
+            n0 = t * t * gradient2D(seed, i, j, x0, y0);
         }
 
         t = (double) 0.5 - x1 * x1 - y1 * y1;
@@ -53,7 +52,7 @@ public class Simplex extends Noise {
             n1 = 0;
         else {
             t *= t;
-            n1 = t * t * GradCoord2D(seed, i + i1, j + j1, x1, y1);
+            n1 = t * t * gradient2D(seed, i + i1, j + j1, x1, y1);
         }
 
         t = (double) 0.5 - x2 * x2 - y2 * y2;
@@ -61,7 +60,7 @@ public class Simplex extends Noise {
             n2 = 0;
         else {
             t *= t;
-            n2 = t * t * GradCoord2D(seed, i + 1, j + 1, x2, y2);
+            n2 = t * t * gradient2D(seed, i + 1, j + 1, x2, y2);
         }
 
         return 50 * (n0 + n1 + n2);

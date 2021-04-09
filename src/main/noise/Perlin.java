@@ -22,12 +22,12 @@ public class Perlin extends Noise {
             ys = y - y0;
             break;
         case Hermite:
-            xs = InterpHermiteFunc(x - x0);
-            ys = InterpHermiteFunc(y - y0);
+            xs = hermiteInterpolation(x - x0);
+            ys = hermiteInterpolation(y - y0);
             break;
         case Quintic:
-            xs = InterpQuinticFunc(x - x0);
-            ys = InterpQuinticFunc(y - y0);
+            xs = quinticInterpolation(x - x0);
+            ys = quinticInterpolation(y - y0);
             break;
         }
 
@@ -36,10 +36,10 @@ public class Perlin extends Noise {
         double xd1 = xd0 - 1;
         double yd1 = yd0 - 1;
 
-        double xf0 = Lerp(GradCoord2D(seed, x0, y0, xd0, yd0), GradCoord2D(seed, x1, y0, xd1, yd0), xs);
-        double xf1 = Lerp(GradCoord2D(seed, x0, y1, xd0, yd1), GradCoord2D(seed, x1, y1, xd1, yd1), xs);
+        double xf0 = linearInterpolation(gradient2D(seed, x0, y0, xd0, yd0), gradient2D(seed, x1, y0, xd1, yd0), xs);
+        double xf1 = linearInterpolation(gradient2D(seed, x0, y1, xd0, yd1), gradient2D(seed, x1, y1, xd1, yd1), xs);
 
-        return Lerp(xf0, xf1, ys);
+        return linearInterpolation(xf0, xf1, ys);
     }
     
 }

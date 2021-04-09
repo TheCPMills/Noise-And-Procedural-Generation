@@ -14,20 +14,26 @@ public class Value extends Noise {
 		int x1 = x0 + 1;
 		int y1 = y0 + 1;
 
-        double xs = (x - x0) * (x - x0) * (3 - 2 * (x - x0));
-        double ys = (y - y0) * (y - y0) * (3 - 2 * (y - y0));
+        double xs, ys;
+		switch (interpolation) {
+		default:
+		case Linear:
+			xs = x - x0;
+			ys = y - y0;
+			break;
+		case Hermite:
+			xs = hermiteInterpolation(x - x0);
+			ys = hermiteInterpolation(y - y0);
+			break;
+		case Quintic:
+			xs = quinticInterpolation(x - x0);
+			ys = quinticInterpolation(y - y0);
+			break;
+		}
 
-		double xf0 = hashValues(x0, y0) + xs * (hashValues(x1, y0) - hashValues(x0, y0));
-		double xf1 = hashValues(x0, y1) + xs * (hashValues(x1, y1) - hashValues(x0, y1));
+		double xf0 = linearInterpolation(value2D(seed, x0, y0), value2D(seed, x1, y0), xs);
+		double xf1 = linearInterpolation(value2D(seed, x0, y1), value2D(seed, x1, y1), xs);
 
-		return xf0 + ys * (xf1 - xf0);
-	}
-
-    private double hashValues(int x, int y) {
-		int n = seed;
-		n ^= 1619 * x;
-		n ^= 31337 * y;
-
-		return (n * n * n * 60493) / 2147483648.0;
+		return linearInterpolation(xf0, xf1, ys);
 	}
 }

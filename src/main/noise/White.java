@@ -7,13 +7,17 @@ public class White extends Noise {
     }
 
     public double getNoise(double x, double y) {
-        x *= frequency * 1000000;
-        y *= frequency * 1000000;
+        x *= frequency * 0.01;
+        y *= frequency * 0.01;
 
-        int n = seed;
-        n ^= 1619 * (int) x;
-        n ^= 31337 * (int) y;
+        int xi = doubleToInt(x);
+        int yi = doubleToInt(y);
 
-        return (n * n * n * 60493) / (float) 2147483648.0;
+        return value2D(seed, xi, yi);
+    }
+
+    private int doubleToInt(double d) {
+        int i = (int) Double.doubleToRawLongBits(d);
+        return i ^ (i >> 16);
     }
 }

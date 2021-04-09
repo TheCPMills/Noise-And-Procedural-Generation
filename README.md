@@ -23,11 +23,12 @@ Prof. Engling and Chase P. Miller • D21
 - Linear
 - Hermite
 - Quintic
+- Cubic Lerp
 
 #### Noise Functions
 - White Noise
-- Value Noise
 - Cellular Noise
+- Value Noise
 - Perlin Noise
 - Simplex Noise
 
@@ -36,6 +37,7 @@ Prof. Engling and Chase P. Miller • D21
    - Diamond Square Algorithm
    - Fractal Brownian Motion
    - Ridged Multifractal Noise
+   - Billowed Fractal Noise
 - Marching Squares / Marching Cubes
 - Gaussian Blur
 

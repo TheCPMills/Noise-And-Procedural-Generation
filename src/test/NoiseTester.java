@@ -7,10 +7,13 @@ import main.noise.fractal.*;
 import java.io.*;
 
 public class NoiseTester {
-    public static void main(String[] args) throws IOException {
-        generateNoiseMap(NoiseType.Simplex, 425735091);
-        generate2DTerrain(NoiseType.Simplex);
-        generate25DTerrain(NoiseType.Simplex);
+    public static void main(String[] args) throws IOException { 
+        // generateNoiseMap(NoiseType.Simplex, 425735091);
+        // generate2DTerrain(NoiseType.Simplex);
+        // generate25DTerrain(NoiseType.Simplex);
+        // generate3DTerrain(NoiseType.Simplex, 8388608, 425735091);
+        // CaveGenerator2D.generate("FBM", 512, 512, 0.5);
+        // Generator.generate("Simplex", "FBM");
     }
 
     private static void generateNoiseMap(NoiseType noiseType, int seed) {
@@ -54,7 +57,7 @@ public class NoiseTester {
         TerrainGenerator25D.generate(noiseType.name(), 100);
     }
 
-    private static void generate3DTerrain(NoiseType noiseType, int seed) {
+    private static void generate3DTerrain(NoiseType noiseType, double threshold, int seed) {
         Noise noise;
         switch (noiseType) {
             case White:
@@ -84,7 +87,7 @@ public class NoiseTester {
             default:
                 noise = null;
         }
-        TerrainGenerator3D.generate(noise, 100);
+        TerrainGenerator3D.generate(noise, threshold);
     }
 
     private enum NoiseType {

@@ -3,10 +3,10 @@ package main.noise;
 import main.util.*;
 
 public class Cellular extends Noise {
-    DistanceFunction distanceFunction = DistanceFunction.Natural;
-    CellularReturnType returnType = CellularReturnType.Distance;
+    DistanceFunction distanceFunction;
+    CellularReturnType returnType;
 
-    private static final Vector2[] CELL2D = { new Vector2(-0.4313539279f, 0.1281943404f),
+    private final Vector2[] CELL2D = {new Vector2(-0.4313539279f, 0.1281943404f),
             new Vector2(-0.1733316799, 0.415278375), new Vector2(-0.2821957395, -0.3505218461),
             new Vector2(-0.2806473808, 0.3517627718), new Vector2(0.3125508975, -0.3237467165),
             new Vector2(0.3383018443, -0.2967353402), new Vector2(-0.4393982022, -0.09710417025),
@@ -134,10 +134,217 @@ public class Cellular extends Noise {
             new Vector2(-0.243590703, 0.3783696201), new Vector2(0.2958191174, -0.3391033025),
             new Vector2(-0.1164007991, 0.4346847754), new Vector2(0.1274037151, -0.4315881062),
             new Vector2(0.368047306, 0.2589231171), new Vector2(0.2451436949, 0.3773652989),
-            new Vector2(-0.4314509715, 0.12786735) };
+            new Vector2(-0.4314509715, 0.12786735)};
+
+    private final Vector3[] CELL3D = {new Vector3(0.1453787434, -0.4149781685, -0.0956981749), new Vector3(-0.01242829687, -0.1457918398, -0.4255470325),
+            new Vector3(0.2877979582, -0.02606483451, -0.3449535616), new Vector3(-0.07732986802, 0.2377094325, 0.3741848704),
+            new Vector3(0.1107205875, -0.3552302079, -0.2530858567), new Vector3(0.2755209141, 0.2640521179, -0.238463215),
+            new Vector3(0.294168941, 0.1526064594, 0.3044271714), new Vector3(0.4000921098, -0.2034056362, 0.03244149937),
+            new Vector3(-0.1697304074, 0.3970864695, -0.1265461359), new Vector3(-0.1483224484, -0.3859694688, 0.1775613147),
+            new Vector3(0.2623596946, -0.2354852944, 0.2796677792), new Vector3(-0.2709003183, 0.3505271138, -0.07901746678),
+            new Vector3(-0.03516550699, 0.3885234328, 0.2243054374), new Vector3(-0.1267712655, 0.1920044036, 0.3867342179),
+            new Vector3(0.02952021915, 0.4409685861, 0.08470692262), new Vector3(-0.2806854217, -0.266996757, 0.2289725438),
+            new Vector3(-0.171159547, 0.2141185563, 0.3568720405), new Vector3(0.2113227183, 0.3902405947, -0.07453178509),
+            new Vector3(-0.1024352839, 0.2128044156, -0.3830421561), new Vector3(-0.3304249877, -0.1566986703, 0.2622305365),
+            new Vector3(0.2091111325, 0.3133278055, -0.2461670583), new Vector3(0.344678154, -0.1944240454, -0.2142341261),
+            new Vector3(0.1984478035, -0.3214342325, -0.2445373252), new Vector3(-0.2929008603, 0.2262915116, 0.2559320961),
+            new Vector3(-0.1617332831, 0.006314769776, -0.4198838754), new Vector3(-0.3582060271, -0.148303178, -0.2284613961),
+            new Vector3(-0.1852067326, -0.3454119342, -0.2211087107), new Vector3(0.3046301062, 0.1026310383, 0.314908508),
+            new Vector3(-0.03816768434, -0.2551766358, -0.3686842991), new Vector3(-0.4084952196, 0.1805950793, 0.05492788837),
+            new Vector3(-0.02687443361, -0.2749741471, 0.3551999201), new Vector3(-0.03801098351, 0.3277859044, 0.3059600725),
+            new Vector3(0.2371120802, 0.2900386767, -0.2493099024), new Vector3(0.4447660503, 0.03946930643, 0.05590469027),
+            new Vector3(0.01985147278, -0.01503183293, -0.4493105419), new Vector3(0.4274339143, 0.03345994256, -0.1366772882),
+            new Vector3(-0.2072988631, 0.2871414597, -0.2776273824), new Vector3(-0.3791240978, 0.1281177671, 0.2057929936),
+            new Vector3(-0.2098721267, -0.1007087278, -0.3851122467), new Vector3(0.01582798878, 0.4263894424, 0.1429738373),
+            new Vector3(-0.1888129464, -0.3160996813, -0.2587096108), new Vector3(0.1612988974, -0.1974805082, -0.3707885038),
+            new Vector3(-0.08974491322, 0.229148752, -0.3767448739), new Vector3(0.07041229526, 0.4150230285, -0.1590534329),
+            new Vector3(-0.1082925611, -0.1586061639, 0.4069604477), new Vector3(0.2474100658, -0.3309414609, 0.1782302128),
+            new Vector3(-0.1068836661, -0.2701644537, -0.3436379634), new Vector3(0.2396452163, 0.06803600538, -0.3747549496),
+            new Vector3(-0.3063886072, 0.2597428179, 0.2028785103), new Vector3(0.1593342891, -0.3114350249, -0.2830561951),
+            new Vector3(0.2709690528, 0.1412648683, -0.3303331794), new Vector3(-0.1519780427, 0.3623355133, 0.2193527988),
+            new Vector3(0.1699773681, 0.3456012883, 0.2327390037), new Vector3(-0.1986155616, 0.3836276443, -0.1260225743),
+            new Vector3(-0.1887482106, -0.2050154888, -0.353330953), new Vector3(0.2659103394, 0.3015631259, -0.2021172246),
+            new Vector3(-0.08838976154, -0.4288819642, -0.1036702021), new Vector3(-0.04201869311, 0.3099592485, 0.3235115047),
+            new Vector3(-0.3230334656, 0.201549922, -0.2398478873), new Vector3(0.2612720941, 0.2759854499, -0.2409749453),
+            new Vector3(0.385713046, 0.2193460345, 0.07491837764), new Vector3(0.07654967953, 0.3721732183, 0.241095919),
+            new Vector3(0.4317038818, -0.02577753072, 0.1243675091), new Vector3(-0.2890436293, -0.3418179959, -0.04598084447),
+            new Vector3(-0.2201947582, 0.383023377, -0.08548310451), new Vector3(0.4161322773, -0.1669634289, -0.03817251927),
+            new Vector3(0.2204718095, 0.02654238946, -0.391391981), new Vector3(-0.1040307469, 0.3890079625, -0.2008741118),
+            new Vector3(-0.1432122615, 0.371614387, -0.2095065525), new Vector3(0.3978380468, -0.06206669342, 0.2009293758),
+            new Vector3(-0.2599274663, 0.2616724959, -0.2578084893), new Vector3(0.4032618332, -0.1124593585, 0.1650235939),
+            new Vector3(-0.08953470255, -0.3048244735, 0.3186935478), new Vector3(0.118937202, -0.2875221847, 0.325092195),
+            new Vector3(0.02167047076, -0.03284630549, -0.4482761547), new Vector3(-0.3411343612, 0.2500031105, 0.1537068389),
+            new Vector3(0.3162964612, 0.3082064153, -0.08640228117), new Vector3(0.2355138889, -0.3439334267, -0.1695376245),
+            new Vector3(-0.02874541518, -0.3955933019, 0.2125550295), new Vector3(-0.2461455173, 0.02020282325, -0.3761704803),
+            new Vector3(0.04208029445, -0.4470439576, 0.02968078139), new Vector3(0.2727458746, 0.2288471896, -0.2752065618),
+            new Vector3(-0.1347522818, -0.02720848277, -0.4284874806), new Vector3(0.3829624424, 0.1231931484, -0.2016512234),
+            new Vector3(-0.3547613644, 0.1271702173, 0.2459107769), new Vector3(0.2305790207, 0.3063895591, 0.2354968222),
+            new Vector3(-0.08323845599, -0.1922245118, 0.3982726409), new Vector3(0.2993663085, -0.2619918095, -0.2103333191),
+            new Vector3(-0.2154865723, 0.2706747713, 0.287751117), new Vector3(0.01683355354, -0.2680655787, -0.3610505186),
+            new Vector3(0.05240429123, 0.4335128183, -0.1087217856), new Vector3(0.00940104872, -0.4472890582, 0.04841609928),
+            new Vector3(0.3465688735, 0.01141914583, -0.2868093776), new Vector3(-0.3706867948, -0.2551104378, 0.003156692623),
+            new Vector3(0.2741169781, 0.2139972417, -0.2855959784), new Vector3(0.06413433865, 0.1708718512, 0.4113266307),
+            new Vector3(-0.388187972, -0.03973280434, -0.2241236325), new Vector3(0.06419469312, -0.2803682491, 0.3460819069),
+            new Vector3(-0.1986120739, -0.3391173584, 0.2192091725), new Vector3(-0.203203009, -0.3871641506, 0.1063600375),
+            new Vector3(-0.1389736354, -0.2775901578, -0.3257760473), new Vector3(-0.06555641638, 0.342253257, -0.2847192729),
+            new Vector3(-0.2529246486, -0.2904227915, 0.2327739768), new Vector3(0.1444476522, 0.1069184044, 0.4125570634),
+            new Vector3(-0.3643780054, -0.2447099973, -0.09922543227), new Vector3(0.4286142488, -0.1358496089, -0.01829506817),
+            new Vector3(0.165872923, -0.3136808464, -0.2767498872), new Vector3(0.2219610524, -0.3658139958, 0.1393320198),
+            new Vector3(0.04322940318, -0.3832730794, 0.2318037215), new Vector3(-0.08481269795, -0.4404869674, -0.03574965489),
+            new Vector3(0.1822082075, -0.3953259299, 0.1140946023), new Vector3(-0.3269323334, 0.3036542563, 0.05838957105),
+            new Vector3(-0.4080485344, 0.04227858267, -0.184956522), new Vector3(0.2676025294, -0.01299671652, 0.36155217),
+            new Vector3(0.3024892441, -0.1009990293, -0.3174892964), new Vector3(0.1448494052, 0.425921681, -0.0104580805),
+            new Vector3(0.4198402157, 0.08062320474, 0.1404780841), new Vector3(-0.3008872161, -0.333040905, -0.03241355801),
+            new Vector3(0.3639310428, -0.1291284382, -0.2310412139), new Vector3(0.3295806598, 0.0184175994, -0.3058388149),
+            new Vector3(0.2776259487, -0.2974929052, -0.1921504723), new Vector3(0.4149000507, -0.144793182, -0.09691688386),
+            new Vector3(0.145016715, -0.0398992945, 0.4241205002), new Vector3(0.09299023471, -0.299732164, -0.3225111565),
+            new Vector3(0.1028907093, -0.361266869, 0.247789732), new Vector3(0.2683057049, -0.07076041213, -0.3542668666),
+            new Vector3(-0.4227307273, -0.07933161816, -0.1323073187), new Vector3(-0.1781224702, 0.1806857196, -0.3716517945),
+            new Vector3(0.4390788626, -0.02841848598, -0.09435116353), new Vector3(0.2972583585, 0.2382799621, -0.2394997452),
+            new Vector3(-0.1707002821, 0.2215845691, 0.3525077196), new Vector3(0.3806686614, 0.1471852559, -0.1895464869),
+            new Vector3(-0.1751445661, -0.274887877, 0.3102596268), new Vector3(-0.2227237566, -0.2316778837, 0.3149912482),
+            new Vector3(0.1369633021, 0.1341343041, -0.4071228836), new Vector3(-0.3529503428, -0.2472893463, -0.129514612),
+            new Vector3(-0.2590744185, -0.2985577559, -0.2150435121), new Vector3(-0.3784019401, 0.2199816631, -0.1044989934),
+            new Vector3(-0.05635805671, 0.1485737441, 0.4210102279), new Vector3(0.3251428613, 0.09666046873, -0.2957006485),
+            new Vector3(-0.4190995804, 0.1406751354, -0.08405978803), new Vector3(-0.3253150961, -0.3080335042, -0.04225456877),
+            new Vector3(0.2857945863, -0.05796152095, 0.3427271751), new Vector3(-0.2733604046, 0.1973770973, -0.2980207554),
+            new Vector3(0.219003657, 0.2410037886, -0.3105713639), new Vector3(0.3182767252, -0.271342949, 0.1660509868),
+            new Vector3(-0.03222023115, -0.3331161506, -0.300824678), new Vector3(-0.3087780231, 0.1992794134, -0.2596995338),
+            new Vector3(-0.06487611647, -0.4311322747, 0.1114273361), new Vector3(0.3921171432, -0.06294284106, -0.2116183942),
+            new Vector3(-0.1606404506, -0.358928121, -0.2187812825), new Vector3(-0.03767771199, -0.2290351443, 0.3855169162),
+            new Vector3(0.1394866832, -0.3602213994, 0.2308332918), new Vector3(-0.4345093872, 0.005751117145, 0.1169124335),
+            new Vector3(-0.1044637494, 0.4168128432, -0.1336202785), new Vector3(0.2658727501, 0.2551943237, 0.2582393035),
+            new Vector3(0.2051461999, 0.1975390727, 0.3484154868), new Vector3(-0.266085566, 0.23483312, 0.2766800993),
+            new Vector3(0.07849405464, -0.3300346342, -0.2956616708), new Vector3(-0.2160686338, 0.05376451292, -0.3910546287),
+            new Vector3(-0.185779186, 0.2148499206, 0.3490352499), new Vector3(0.02492421743, -0.3229954284, -0.3123343347),
+            new Vector3(-0.120167831, 0.4017266681, 0.1633259825), new Vector3(-0.02160084693, -0.06885389554, 0.4441762538),
+            new Vector3(0.2597670064, 0.3096300784, 0.1978643903), new Vector3(-0.1611553854, -0.09823036005, 0.4085091653),
+            new Vector3(-0.3278896792, 0.1461670309, 0.2713366126), new Vector3(0.2822734956, 0.03754421121, -0.3484423997),
+            new Vector3(0.03169341113, 0.347405252, -0.2842624114), new Vector3(0.2202613604, -0.3460788041, -0.1849713341),
+            new Vector3(0.2933396046, 0.3031973659, 0.1565989581), new Vector3(-0.3194922995, 0.2453752201, -0.200538455),
+            new Vector3(-0.3441586045, -0.1698856132, -0.2349334659), new Vector3(0.2703645948, -0.3574277231, 0.04060059933),
+            new Vector3(0.2298568861, 0.3744156221, 0.0973588921), new Vector3(0.09326603877, -0.3170108894, 0.3054595587),
+            new Vector3(-0.1116165319, -0.2985018719, 0.3177080142), new Vector3(0.2172907365, -0.3460005203, -0.1885958001),
+            new Vector3(0.1991339479, 0.3820341668, -0.1299829458), new Vector3(-0.0541918155, -0.2103145071, 0.39412061),
+            new Vector3(0.08871336998, 0.2012117383, 0.3926114802), new Vector3(0.2787673278, 0.3505404674, 0.04370535101),
+            new Vector3(-0.322166438, 0.3067213525, 0.06804996813), new Vector3(-0.4277366384, 0.132066775, 0.04582286686),
+            new Vector3(0.240131882, -0.1612516055, 0.344723946), new Vector3(0.1448607981, -0.2387819045, 0.3528435224),
+            new Vector3(-0.3837065682, -0.2206398454, 0.08116235683), new Vector3(-0.4382627882, -0.09082753406, -0.04664855374),
+            new Vector3(-0.37728353, 0.05445141085, 0.2391488697), new Vector3(0.1259579313, 0.348394558, 0.2554522098),
+            new Vector3(-0.1406285511, -0.270877371, -0.3306796947), new Vector3(-0.1580694418, 0.4162931958, -0.06491553533),
+            new Vector3(0.2477612106, -0.2927867412, -0.2353514536), new Vector3(0.2916132853, 0.3312535401, 0.08793624968),
+            new Vector3(0.07365265219, -0.1666159848, 0.411478311), new Vector3(-0.26126526, -0.2422237692, 0.2748965434),
+            new Vector3(-0.3721862032, 0.252790166, 0.008634938242), new Vector3(-0.3691191571, -0.255281188, 0.03290232422),
+            new Vector3(0.2278441737, -0.3358364886, 0.1944244981), new Vector3(0.363398169, -0.2310190248, 0.1306597909),
+            new Vector3(-0.304231482, -0.2698452035, 0.1926830856), new Vector3(-0.3199312232, 0.316332536, -0.008816977938),
+            new Vector3(0.2874852279, 0.1642275508, -0.304764754), new Vector3(-0.1451096801, 0.3277541114, -0.2720669462),
+            new Vector3(0.3220090754, 0.0511344108, 0.3101538769), new Vector3(-0.1247400865, -0.04333605335, -0.4301882115),
+            new Vector3(-0.2829555867, -0.3056190617, -0.1703910946), new Vector3(0.1069384374, 0.3491024667, -0.2630430352),
+            new Vector3(-0.1420661144, -0.3055376754, -0.2982682484), new Vector3(-0.250548338, 0.3156466809, -0.2002316239),
+            new Vector3(0.3265787872, 0.1871229129, 0.2466400438), new Vector3(0.07646097258, -0.3026690852, 0.324106687),
+            new Vector3(0.3451771584, 0.2757120714, -0.0856480183), new Vector3(0.298137964, 0.2852657134, 0.179547284),
+            new Vector3(0.2812250376, 0.3466716415, 0.05684409612), new Vector3(0.4390345476, -0.09790429955, -0.01278335452),
+            new Vector3(0.2148373234, 0.1850172527, 0.3494474791), new Vector3(0.2595421179, -0.07946825393, 0.3589187731),
+            new Vector3(0.3182823114, -0.307355516, -0.08203022006), new Vector3(-0.4089859285, -0.04647718411, 0.1818526372),
+            new Vector3(-0.2826749061, 0.07417482322, 0.3421885344), new Vector3(0.3483864637, 0.225442246, -0.1740766085),
+            new Vector3(-0.3226415069, -0.1420585388, -0.2796816575), new Vector3(0.4330734858, -0.118868561, -0.02859407492),
+            new Vector3(-0.08717822568, -0.3909896417, -0.2050050172), new Vector3(-0.2149678299, 0.3939973956, -0.03247898316),
+            new Vector3(-0.2687330705, 0.322686276, -0.1617284888), new Vector3(0.2105665099, -0.1961317136, -0.3459683451),
+            new Vector3(0.4361845915, -0.1105517485, 0.004616608544), new Vector3(0.05333333359, -0.313639498, -0.3182543336),
+            new Vector3(-0.05986216652, 0.1361029153, -0.4247264031), new Vector3(0.3664988455, 0.2550543014, -0.05590974511),
+            new Vector3(-0.2341015558, -0.182405731, 0.3382670703), new Vector3(-0.04730947785, -0.4222150243, -0.1483114513),
+            new Vector3(-0.2391566239, -0.2577696514, -0.2808182972), new Vector3(-0.1242081035, 0.4256953395, -0.07652336246),
+            new Vector3(0.2614832715, -0.3650179274, 0.02980623099), new Vector3(-0.2728794681, -0.3499628774, 0.07458404908),
+            new Vector3(0.007892900508, -0.1672771315, 0.4176793787), new Vector3(-0.01730330376, 0.2978486637, -0.3368779738),
+            new Vector3(0.2054835762, -0.3252600376, -0.2334146693), new Vector3(-0.3231994983, 0.1564282844, -0.2712420987),
+            new Vector3(-0.2669545963, 0.2599343665, -0.2523278991), new Vector3(-0.05554372779, 0.3170813944, -0.3144428146),
+            new Vector3(-0.2083935713, -0.310922837, -0.2497981362), new Vector3(0.06989323478, -0.3156141536, 0.3130537363),
+            new Vector3(0.3847566193, -0.1605309138, -0.1693876312), new Vector3(-0.3026215288, -0.3001537679, -0.1443188342),
+            new Vector3(0.3450735512, 0.08611519592, 0.2756962409), new Vector3(0.1814473292, -0.2788782453, -0.3029914042),
+            new Vector3(-0.03855010448, 0.09795110726, 0.4375151083), new Vector3(0.3533670318, 0.2665752752, 0.08105160988),
+            new Vector3(-0.007945601311, 0.140359426, -0.4274764309), new Vector3(0.4063099273, -0.1491768253, -0.1231199324),
+            new Vector3(-0.2016773589, 0.008816271194, -0.4021797064), new Vector3(-0.07527055435, -0.425643481, -0.1251477955)};
 
     public Cellular(int seed) {
+        this(seed, DistanceFunction.Euclidean, CellularReturnType.Distance);
+    }
+
+    public Cellular(int seed, double frequency) {
+        super(seed, frequency);
+        this.distanceFunction = DistanceFunction.Euclidean;
+        this.returnType = CellularReturnType.Distance;
+    }
+
+    public Cellular(int seed, InterpolationType interpolation) {
+        super(seed, interpolation);
+    }
+
+    public Cellular(int seed, DistanceFunction distanceFunction) {
+        this(seed, distanceFunction, CellularReturnType.Distance);
+    }
+
+    public Cellular(int seed, CellularReturnType returnType) {
+        this(seed, DistanceFunction.Euclidean, returnType);
+    }
+
+    public Cellular(int seed, DistanceFunction distanceFunction, CellularReturnType returnType) {
         super(seed);
+        this.distanceFunction = distanceFunction;
+        this.returnType = returnType;
+    }
+
+    public Cellular(int seed, double frequency, DistanceFunction distanceFunction) {
+        super(seed, frequency);
+        this.distanceFunction = distanceFunction;
+        this.returnType = CellularReturnType.Distance;
+    }
+
+    public Cellular(int seed, double frequency, CellularReturnType returnType) {
+        super(seed, frequency);
+        this.distanceFunction = DistanceFunction.Euclidean;
+        this.returnType = returnType;
+    }
+
+    public Cellular(int seed, InterpolationType interpolation, DistanceFunction distanceFunction) {
+        super(seed, interpolation);
+        this.distanceFunction = distanceFunction;
+        this.returnType = CellularReturnType.Distance;
+    }
+
+    public Cellular(int seed, InterpolationType interpolation, CellularReturnType returnType) {
+        super(seed, interpolation);
+        this.distanceFunction = DistanceFunction.Euclidean;
+        this.returnType = returnType;
+    }
+
+    public Cellular(int seed, double frequency, InterpolationType interpolation) {
+        this(seed, frequency, interpolation, DistanceFunction.Euclidean, CellularReturnType.Distance);
+    }
+
+    public Cellular(int seed, double frequency, DistanceFunction distanceFunction, CellularReturnType returnType) {
+        super(seed, frequency);
+        this.distanceFunction = distanceFunction;
+        this.returnType = returnType;
+    }
+
+    public Cellular(int seed, InterpolationType interpolation, DistanceFunction distanceFunction, CellularReturnType returnType) {
+        super(seed, interpolation);
+        this.distanceFunction = distanceFunction;
+        this.returnType = returnType;
+    }
+
+    public Cellular(int seed, double frequency, InterpolationType interpolation, DistanceFunction distanceFunction) {
+        this(seed, frequency, interpolation, distanceFunction, CellularReturnType.Distance);
+    }
+
+    public Cellular(int seed, double frequency, InterpolationType interpolation, CellularReturnType returnType) {
+        this(seed, frequency, interpolation, DistanceFunction.Euclidean, returnType);
+    }
+
+    public Cellular(int seed, double frequency, InterpolationType interpolation, DistanceFunction distanceFunction, CellularReturnType returnType) {
+        super(seed, frequency, interpolation);
+        this.distanceFunction = distanceFunction;
+        this.returnType = returnType;
     }
 
     public double getNoise(double x, double y) {
@@ -209,12 +416,103 @@ public class Cellular extends Noise {
         }
 
         switch (returnType) {
-        case CellValue:
-            return value2D(0, xc, yc);
-        case Distance:
-            return distance - 1;
-        default:
-            return 0;
+            case CellValue:
+                return value2D(0, xc, yc);
+            case Distance:
+                return distance - 1;
+            default:
+                return 0;
+        }
+    }
+
+    public double getNoise(double x, double y, double z) {
+        x *= frequency;
+        y *= frequency;
+        z *= frequency;
+        
+        int xr = (x >= 0) ? (int) (x + 0.5) : (int) (x - 0.5);
+        int yr = (y >= 0) ? (int) (y + 0.5) : (int) (y - 0.5);
+        int zr = (z >= 0) ? (int) (z + 0.5) : (int) (z - 0.5);
+
+        double distance = Double.POSITIVE_INFINITY;
+        int xc = 0, yc = 0, zc = 0;
+
+        switch (distanceFunction) {
+        case Euclidean:
+            for (int xi = xr - 1; xi <= xr + 1; xi++) {
+                for (int yi = yr - 1; yi <= yr + 1; yi++) {
+                    for (int zi = zr - 1; zi <= zr + 1; zi++) {
+                        Vector3 vec = CELL3D[hash3D(seed, xi, yi, zi) & 255];
+
+                        double vecX = xi - x + vec.getX();
+                        double vecY = yi - y + vec.getY();
+                        double vecZ = zi - z + vec.getZ();
+
+                        double newDistance = vecX * vecX + vecY * vecY + vecZ * vecZ;
+
+                        if (newDistance < distance) {
+                            distance = newDistance;
+                            xc = xi;
+                            yc = yi;
+                            zc = zi;
+                        }
+                    }
+                }
+            }
+            break;
+        case Manhattan:
+            for (int xi = xr - 1; xi <= xr + 1; xi++) {
+                for (int yi = yr - 1; yi <= yr + 1; yi++) {
+                    for (int zi = zr - 1; zi <= zr + 1; zi++) {
+                        Vector3 vec = CELL3D[hash3D(seed, xi, yi, zi) & 255];
+
+                        double vecX = xi - x + vec.getX();
+                        double vecY = yi - y + vec.getY();
+                        double vecZ = zi - z + vec.getZ();
+
+                        double newDistance = Math.abs(vecX) + Math.abs(vecY) + Math.abs(vecZ);
+
+                        if (newDistance < distance) {
+                            distance = newDistance;
+                            xc = xi;
+                            yc = yi;
+                            zc = zi;
+                        }
+                    }
+                }
+            }
+            break;
+        case Natural:
+            for (int xi = xr - 1; xi <= xr + 1; xi++) {
+                for (int yi = yr - 1; yi <= yr + 1; yi++) {
+                    for (int zi = zr - 1; zi <= zr + 1; zi++) {
+                        Vector3 vec = CELL3D[hash3D(seed, xi, yi, zi) & 255];
+
+                        double vecX = xi - x + vec.getX();
+                        double vecY = yi - y + vec.getY();
+                        double vecZ = zi - z + vec.getZ();
+
+                        double newDistance = (Math.abs(vecX) + Math.abs(vecY) + Math.abs(vecZ)) + (vecX * vecX + vecY * vecY + vecZ * vecZ);
+
+                        if (newDistance < distance) {
+                            distance = newDistance;
+                            xc = xi;
+                            yc = yi;
+                            zc = zi;
+                        }
+                    }
+                }
+            }
+            break;
+        }
+
+        switch (returnType) {
+            case CellValue:
+                return value3D(0, xc, yc, zc);
+            case Distance:
+                return distance - 1;
+            default:
+                return 0;
         }
     }
 }

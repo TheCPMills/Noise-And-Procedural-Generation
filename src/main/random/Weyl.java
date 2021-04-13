@@ -11,7 +11,7 @@ public class Weyl extends RNG {
         x *= x;
         x += (w += seed);
         x = (x >> 32) | (x << 32);
-        return x / 4294967295.0;
+        return x / 9223372036854775807.0;
 
     }
 }

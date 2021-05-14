@@ -49,6 +49,7 @@ Prof. Engling and Chase P. Miller • D21
 
 ## Resources
 - [The Two Types of Random](https://youtu.be/dwI5b-wRLic)
+- [The Power of Simple Tabulation Hashing](https://arxiv.org/pdf/1011.5200.pdf)
 - [How Does Procedural Generation Work?](https://youtu.be/-POwgollFeY)
 - [Procedural Generation in Game Design](https://drive.google.com/file/d/10refOjoLAsMrVCumJItz_c3wlQONxwMd/view?usp=sharing)
 - [Procedural Content Generation in Games](http://pcgbook.com/)

@@ -8,6 +8,7 @@ Prof. Engling and Chase P. Miller • D21
 #### Types of Randomness and Random Number Generators
 - Linear Congruential Generator
 - Weyl Middle-Square Method
+- XORShift
 - Canonical Random Function
 
 #### Noise Function Parameters

@@ -7,9 +7,8 @@ Prof. Engling and Chase P. Miller • D21
 
 #### Types of Randomness and Random Number Generators
 - Linear Congruential Generator
+- Shift-Register Generator 
 - Weyl Middle-Square Method
-- XORShift
-- Canonical Random Function
 
 #### Noise Function Parameters
 - Seed
@@ -20,25 +19,34 @@ Prof. Engling and Chase P. Miller • D21
 - Persistence
 - Lacunarity
 
+#### Hashing
+- Tabulation Hashing
+- Rolling Hashing
+- Universal One-Way Hash Function
+
+
 #### Interpolation Types
 - Linear
 - Hermite
 - Quintic
 - Cubic Lerp
 
-#### Noise Functions
+
+#### Coherent-Noise Functions
+- Canonical Noise
 - White Noise
 - Cellular Noise
 - Value Noise
 - Perlin Noise
 - Simplex Noise
 
+#### Fractal Noise Functions
+- Fractal Brownian Motion (FBM) Noise
+- Billow Fractal Noise
+- Rigid Multifractal Noise
+
 #### Stitching, Layering, and Tiling Noise Maps
-- Fractal Noise
-   - Random Midpoint Displacement (Diamond Square Algorithm / Midpoint Displacement Algorithm)
-   - Fractal Brownian Motion
-   - Billow Fractal Noise
-   - Rigid Multifractal Noise
+- Random Midpoint Displacement Algorithms (Diamond Square Algorithm / Midpoint Displacement Algorithm)
 - Marching Squares / Marching Cubes
 - Gaussian Blur
 
@@ -46,6 +54,7 @@ Prof. Engling and Chase P. Miller • D21
 - 2D Terrain
 - 2.5D Terrain (Heightmaps)
 - 3D Terrain
+- Cave Generation
 
 ## Resources
 - [The Two Types of Random](https://youtu.be/dwI5b-wRLic)

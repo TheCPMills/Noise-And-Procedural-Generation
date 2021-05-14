@@ -4,6 +4,10 @@ import main.noise.*;
 
 public class RigidMultiFractal extends Fractal {
 
+    public RigidMultiFractal() {
+        super();
+    }
+    
     public RigidMultiFractal(int seed) {
         super(seed);
     }

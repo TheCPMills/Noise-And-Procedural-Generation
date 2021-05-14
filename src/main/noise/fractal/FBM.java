@@ -4,6 +4,10 @@ import main.noise.*;
 
 public class FBM extends Fractal {
 
+    public FBM() {
+        super();
+    }
+
     public FBM(int seed) {
         super(seed);
     }

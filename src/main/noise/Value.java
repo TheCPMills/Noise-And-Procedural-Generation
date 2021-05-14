@@ -2,6 +2,10 @@ package main.noise;
 
 public class Value extends Noise {
     
+	public Value() {
+        super();
+    }
+	
 	public Value(int seed) {
         super(seed);
     }

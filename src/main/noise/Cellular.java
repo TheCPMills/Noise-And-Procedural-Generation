@@ -265,14 +265,18 @@ public class Cellular extends Noise {
             new Vector3(-0.007945601311, 0.140359426, -0.4274764309), new Vector3(0.4063099273, -0.1491768253, -0.1231199324),
             new Vector3(-0.2016773589, 0.008816271194, -0.4021797064), new Vector3(-0.07527055435, -0.425643481, -0.1251477955)};
 
+    public Cellular() {
+        this((int) System.currentTimeMillis(), DistanceFunction.Euclidean, CellularReturnType.Distance);
+    }
+
     public Cellular(int seed) {
         this(seed, DistanceFunction.Euclidean, CellularReturnType.Distance);
     }
 
     public Cellular(int seed, double frequency) {
         super(seed, frequency);
-        this.distanceFunction = DistanceFunction.Euclidean;
-        this.returnType = CellularReturnType.Distance;
+        setDistanceFunction(DistanceFunction.Euclidean);
+        setReturnType(CellularReturnType.Distance);
     }
 
     public Cellular(int seed, InterpolationType interpolation) {
@@ -289,32 +293,32 @@ public class Cellular extends Noise {
 
     public Cellular(int seed, DistanceFunction distanceFunction, CellularReturnType returnType) {
         super(seed);
-        this.distanceFunction = distanceFunction;
-        this.returnType = returnType;
+        setDistanceFunction(distanceFunction);
+        setReturnType(returnType);
     }
 
     public Cellular(int seed, double frequency, DistanceFunction distanceFunction) {
         super(seed, frequency);
-        this.distanceFunction = distanceFunction;
-        this.returnType = CellularReturnType.Distance;
+        setDistanceFunction(distanceFunction);
+        setReturnType(CellularReturnType.Distance);
     }
 
     public Cellular(int seed, double frequency, CellularReturnType returnType) {
         super(seed, frequency);
-        this.distanceFunction = DistanceFunction.Euclidean;
-        this.returnType = returnType;
+        setDistanceFunction(DistanceFunction.Euclidean);
+        setReturnType(returnType);
     }
 
     public Cellular(int seed, InterpolationType interpolation, DistanceFunction distanceFunction) {
         super(seed, interpolation);
-        this.distanceFunction = distanceFunction;
-        this.returnType = CellularReturnType.Distance;
+        setDistanceFunction(distanceFunction);
+        setReturnType(CellularReturnType.Distance);
     }
 
     public Cellular(int seed, InterpolationType interpolation, CellularReturnType returnType) {
         super(seed, interpolation);
-        this.distanceFunction = DistanceFunction.Euclidean;
-        this.returnType = returnType;
+        setDistanceFunction(DistanceFunction.Euclidean);
+        setReturnType(returnType);
     }
 
     public Cellular(int seed, double frequency, InterpolationType interpolation) {
@@ -323,14 +327,14 @@ public class Cellular extends Noise {
 
     public Cellular(int seed, double frequency, DistanceFunction distanceFunction, CellularReturnType returnType) {
         super(seed, frequency);
-        this.distanceFunction = distanceFunction;
-        this.returnType = returnType;
+        setDistanceFunction(distanceFunction);
+        setReturnType(returnType);
     }
 
     public Cellular(int seed, InterpolationType interpolation, DistanceFunction distanceFunction, CellularReturnType returnType) {
         super(seed, interpolation);
-        this.distanceFunction = distanceFunction;
-        this.returnType = returnType;
+        setDistanceFunction(distanceFunction);
+        setReturnType(returnType);
     }
 
     public Cellular(int seed, double frequency, InterpolationType interpolation, DistanceFunction distanceFunction) {
@@ -343,8 +347,8 @@ public class Cellular extends Noise {
 
     public Cellular(int seed, double frequency, InterpolationType interpolation, DistanceFunction distanceFunction, CellularReturnType returnType) {
         super(seed, frequency, interpolation);
-        this.distanceFunction = distanceFunction;
-        this.returnType = returnType;
+        setDistanceFunction(distanceFunction);
+        setReturnType(returnType);
     }
 
     public double getNoise(double x, double y) {
@@ -514,6 +518,14 @@ public class Cellular extends Noise {
             default:
                 return 0;
         }
+    }
+
+    public void setDistanceFunction(DistanceFunction distanceFunction) {
+        this.distanceFunction = distanceFunction;
+    }
+
+    public void setReturnType(CellularReturnType returnType) {
+        this.returnType = returnType;
     }
 }
 

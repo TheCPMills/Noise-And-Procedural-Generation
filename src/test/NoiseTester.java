@@ -19,6 +19,9 @@ public class NoiseTester {
     private static void generateNoiseMap(NoiseType noiseType, int seed) {
         Noise noise;
         switch (noiseType) {
+            case Canonical:
+                noise = new Canonical(seed);
+                break;
             case White:
                 noise = new White(seed);
                 break;
@@ -60,6 +63,9 @@ public class NoiseTester {
     private static void generate3DTerrain(NoiseType noiseType, double threshold, int seed) {
         Noise noise;
         switch (noiseType) {
+            case Canonical:
+                noise = new Canonical(seed);
+                break;
             case White:
                 noise = new White(seed);
                 break;
@@ -91,6 +97,6 @@ public class NoiseTester {
     }
 
     private enum NoiseType {
-        White, Cellular, Value, Perlin, Simplex, FBM, Billow, RigidMultiFractal;
+        Canonical, White, Cellular, Value, Perlin, Simplex, FBM, Billow, RigidMultiFractal;
     }
 }

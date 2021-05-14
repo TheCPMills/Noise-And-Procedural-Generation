@@ -2,6 +2,10 @@ package main.noise;
 
 public class Simplex extends Noise {
 
+	public Simplex() {
+        super();
+    }
+
     public Simplex(int seed) {
         super(seed);
     }

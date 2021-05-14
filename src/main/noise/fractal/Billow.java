@@ -4,6 +4,10 @@ import main.noise.*;
 
 public class Billow extends Fractal {
 
+    public Billow() {
+        super();
+    }
+    
     public Billow(int seed) {
         super(seed);
     }

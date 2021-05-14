@@ -2,6 +2,9 @@ package main.noise;
 
 public class White extends Noise {
 
+    public White() {
+    }
+    
     public White(int seed) {
         super(seed);
     }

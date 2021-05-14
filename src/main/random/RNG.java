@@ -14,6 +14,6 @@ public abstract class RNG {
     }
 
     public double next(double lowerBound, double upperBound) {
-        return (next() * (upperBound + 1)) + lowerBound;
+        return lowerBound + ((next() + 1) * (upperBound - lowerBound)) / 2;
     }
 }

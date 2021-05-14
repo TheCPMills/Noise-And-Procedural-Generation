@@ -9,6 +9,10 @@ public abstract class Noise {
     private final Vector2[] GRAD2D = {new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1), new Vector2(1, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0)};
     private final Vector3[] GRAD3D = {new Vector3(1, 1, 0), new Vector3(-1, 1, 0), new Vector3(1, -1, 0), new Vector3(-1, -1, 0), new Vector3(1, 0, 1), new Vector3(-1, 0, 1), new Vector3(1, 0, -1), new Vector3(-1, 0, -1), new Vector3(0, 1, 1), new Vector3(0, -1, 1), new Vector3(0, 1, -1), new Vector3(0, -1, -1), new Vector3(1, 1, 0), new Vector3(0, -1, 1), new Vector3(-1, 1, 0), new Vector3(0, -1, -1)};
 
+    public Noise() {
+        this((int) System.currentTimeMillis(), 0.01, InterpolationType.Quintic);
+    }
+    
     public Noise(int seed) {
         this(seed, 0.01, InterpolationType.Quintic);
     }
@@ -22,9 +26,9 @@ public abstract class Noise {
     }
 
     public Noise(int seed, double frequency, InterpolationType interpolation) {
-        this.seed = seed;
-        this.frequency = frequency;
-        this.interpolation = interpolation;
+        setSeed(seed);
+        setFrequency(frequency);
+        setInterpolation(interpolation);
     }
 
     public abstract double getNoise(double x, double y);
@@ -108,5 +112,17 @@ public abstract class Noise {
         hash = (hash >> 13) ^ hash;
 
         return hash;
+    }
+
+    public void setSeed(int seed) {
+        this.seed = seed;
+    }
+    
+    public void setFrequency(double frequency) {
+        this.frequency = frequency;
+    }
+
+    public void setInterpolation(InterpolationType interpolation) {
+        this.interpolation = interpolation;
     }
 }

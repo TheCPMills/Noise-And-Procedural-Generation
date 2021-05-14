@@ -2,6 +2,10 @@ package main.noise;
 
 public class Perlin extends Noise {
     
+    public Perlin() {
+        super();
+    }
+    
     public Perlin(int seed) {
         super(seed);
     }

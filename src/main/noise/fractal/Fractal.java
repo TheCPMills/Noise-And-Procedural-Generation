@@ -8,23 +8,27 @@ public abstract class Fractal extends Noise {
     protected double gain;
     protected double fractalBounding;
 
+    public Fractal() {
+        this((int) System.currentTimeMillis(), 3, 2.0, 0.5);
+    }
+    
     public Fractal(int seed) {
         this(seed, 3, 2.0, 0.5);
     }
 
     public Fractal(int seed, double frequency) {
         super(seed, frequency);
-        this.octaves = 3;
-        this.lacunarity = 2.0;
-        this.gain = 0.5;
+        setOctaves(3);
+        setLacunarity(2.0);
+        setGain(0.5);
         calculateFractalBounding();
     }
 
     public Fractal(int seed, InterpolationType interpolation) {
         super(seed, interpolation);
-        this.octaves = 3;
-        this.lacunarity = 2.0;
-        this.gain = 0.5;
+        setOctaves(3);
+        setLacunarity(2.0);
+        setGain(0.5);
         calculateFractalBounding();
     }
 
@@ -42,25 +46,25 @@ public abstract class Fractal extends Noise {
 
     public Fractal(int seed, double frequency, int octaves) {
         super(seed, frequency);
-        this.octaves = octaves;
-        this.lacunarity = 2.0;
-        this.gain = 0.5;
+        setOctaves(octaves);
+        setLacunarity(2.0);
+        setGain(0.5);
         calculateFractalBounding();
     }
 
     public Fractal(int seed, InterpolationType interpolation, int octaves) {
         super(seed, interpolation);
-        this.octaves = octaves;
-        this.lacunarity = 2.0;
-        this.gain = 0.5;
+        setOctaves(octaves);
+        setLacunarity(2.0);
+        setGain(0.5);
         calculateFractalBounding();
     }
 
     public Fractal(int seed, int octaves, double lacunarity, double gain) {
         super(seed);
-        this.octaves = octaves;
-        this.lacunarity = lacunarity;
-        this.gain = gain;
+        setOctaves(octaves);
+        setLacunarity(lacunarity);
+        setGain(gain);
         calculateFractalBounding();
     }
 
@@ -74,13 +78,15 @@ public abstract class Fractal extends Noise {
 
     public Fractal(int seed, double frequency, InterpolationType interpolation, int octaves, double lacunarity, double gain) {
         super(seed, frequency, interpolation);
-        this.octaves = octaves;
-        this.lacunarity = lacunarity;
-        this.gain = gain;
+        setOctaves(octaves);
+        setLacunarity(lacunarity);
+        setGain(gain);
         calculateFractalBounding();
     }
 
     public abstract double getNoise(double x, double y);
+
+    public abstract double getNoise(double x, double y, double z);
     
     private void calculateFractalBounding() {
         double amp = gain;
@@ -165,5 +171,17 @@ public abstract class Fractal extends Noise {
     protected double cubicLerp(double a, double b, double c, double d, double t) {
         double p = (d - c) - (a - b);
         return t * t * t * p + t * t * ((a - b) - p) + t * (c - a) + b;
+    }
+
+    public void setOctaves(int octaves) {
+        this.octaves = octaves;
+    }
+
+    public void setLacunarity(double lacunarity) {
+        this.lacunarity = lacunarity;
+    }
+
+    public void setGain(double gain) {
+        this.gain = gain;
     }
 }

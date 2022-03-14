@@ -26,12 +26,17 @@
 
 ## Usage
 ```java
-public static void main(String[] args) throws Exception {
-  int seed = 1337; // seed
-  double frequency = 0.01; // noise frequency
-  Fractal fractalBase = new FBM(5, 2.00, 0.5, 0.0f); // fractal modifier
-  Noise noise = new Perlin(seed, frequency, InterpolationType.HERMITE, fractalBase); // noise function
+import javanoise.noise.*;
+import javanoise.noise.fractal.*;
 
-  NoiseMapGenerator.generateMap(noise, 256, 256, "Noisemap"); // generate noisemap
+public class App {
+  public static void main(String[] args) throws Exception {
+    int seed = 1337; // seed
+    double frequency = 0.01; // noise frequency
+    Fractal fractalBase = new FBM(5, 2.00, 0.5, 0.0f); // fractal modifier
+    Noise noise = new Perlin(seed, frequency, InterpolationType.HERMITE, fractalBase); // noise function
+
+    NoiseMapGenerator.generateMap(noise, 256, 256, "Noisemap"); // generate noisemap
+  }
 }
 ```

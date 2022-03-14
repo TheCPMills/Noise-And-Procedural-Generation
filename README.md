@@ -1,68 +1,37 @@
-# CS 3999: Noise and Procedural Generation
-Prof. Engling and Chase P. Miller • D21 
+# JavaNoise API 2.0.0
 
-[GitHub Repository](https://github.com/TheCPMills/NoiseAndProceduralGeneration)
+## Features
 
-## Material Covered
+- ### Five Noise Functions
+  - Guassian
+  - Value
+  - Cellular
+  - Perlin
+  - Simplex
 
-#### Types of Randomness and Random Number Generators
-- Linear Congruential Generator
-- Shift-Register Generator 
-- Weyl Middle-Square Method
+- ### Four Fractal Modifiers
+  - Fractal Brownian Motion (FBM)
+  - Rigid-Multifractal Noise
+  - Billow
+  - Ping-Pong
 
-#### Noise Function Parameters
-- Seed
-- Scale
-- Amplitude
-- Frequency
-- Octaves
-- Persistence
-- Lacunarity
+- ### Three Random Number Generators
+  - Linear Congruential Generator (LCG)
+  - XOR Shift
+  - Counter-Based Middle Square Sequence (CBSquares)
 
-#### Hashing
-- Tabulation Hashing
-- Rolling Hashing
-- Universal One-Way Hash Function
+- ### A Noisemap Generator
 
+- ### A Shuffler / Data Randomizer
 
-#### Interpolation Types
-- Linear
-- Hermite
-- Quintic
-- Cubic Lerp
+## Usage
+```java
+public static void main(String[] args) throws Exception {
+  int seed = 1337; // seed
+  double frequency = 0.01; // noise frequency
+  Fractal fractalBase = new FBM(5, 2.00, 0.5, 0.0f); // fractal modifier
+  Noise noise = new Perlin(seed, frequency, InterpolationType.HERMITE, fractalBase); // noise function
 
-
-#### Coherent-Noise Functions
-- Canonical Noise
-- White Noise
-- Cellular Noise
-- Value Noise
-- Perlin Noise
-- Simplex Noise
-
-#### Fractal Noise Functions
-- Fractal Brownian Motion (FBM) Noise
-- Billow Fractal Noise
-- Rigid Multifractal Noise
-
-#### Stitching, Layering, and Tiling Noise Maps
-- Random Midpoint Displacement Algorithms (Diamond Square Algorithm / Midpoint Displacement Algorithm)
-- Marching Squares / Marching Cubes
-- Gaussian Blur
-
-#### Procedurally Generated Content
-- 2D Terrain
-- 2.5D Terrain (Heightmaps)
-- 3D Terrain
-- Cave Generation
-
-## Resources
-- [The Two Types of Random](https://youtu.be/dwI5b-wRLic)
-- [Output Randomness](https://www.youtube.com/watch?v=2qfFEP_-LkI)
-- [The Power of Simple Tabulation Hashing](https://arxiv.org/pdf/1011.5200.pdf)
-- [How Does Procedural Generation Work?](https://youtu.be/-POwgollFeY)
-- [Procedural Generation in Game Design](https://drive.google.com/file/d/10refOjoLAsMrVCumJItz_c3wlQONxwMd/view?usp=sharing)
-- [Procedural Content Generation in Games](http://pcgbook.com/)
-- [The Art of Computer Programming: Volume 2 (Seminumerical Algorithms)](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%202%20(Seminumerical%20Algorithms).pdf)
-- [The Nature of Code](https://natureofcode.com/book/introduction/)
-- [The Book of Shaders](https://thebookofshaders.com/)
+  NoiseMapGenerator.generateMap(noise, 256, 256, "Noisemap"); // generate noisemap
+}
+```

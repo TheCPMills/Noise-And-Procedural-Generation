@@ -54,16 +54,9 @@ public class Gaussian extends Noise {
         double canonicalValue = (Math.sin(seed + dotProduct) * 43758.5453) % 1;
 
         double value = value2D(seed, (int) (xi * canonicalValue), (int) (yi * canonicalValue));
-
-        double v1, v2, s;
-        do {
-            v1 = 2 * Math.abs(rng.next()) - 1;
-            v2 = 2 * Math.abs(rng.next()) - 1;
-            s = v1 * v1 + v2 * v2;
-        } while (s >= 1 || s == 0);
-        double multiplier = Math.sqrt(-2 * Math.log(s)/s);
+        double randomGaussian = rng.nextGaussian(0, 0.25);
         
-        return v1 * value * multiplier;
+        return value * randomGaussian;
     }
 
     public double get3DNoise(double x, double y, double z) {
@@ -79,16 +72,9 @@ public class Gaussian extends Noise {
         double canonicalValue = (Math.sin(seed + dotProduct) * 43758.5453) % 1;
 
         double value = value3D(seed, (int) (xi * canonicalValue), (int) (yi * canonicalValue), (int) (zi * canonicalValue));
+        double randomGaussian = rng.nextGaussian(0, 0.25);
 
-        double v1, v2, s;
-        do {
-            v1 = 2 * Math.abs(rng.next()) - 1;
-            v2 = 2 * Math.abs(rng.next()) - 1;
-            s = v1 * v1 + v2 * v2;
-        } while (s >= 1 || s == 0);
-        double multiplier = Math.sqrt(-2 * Math.log(s) / s);
-
-        return v1 * value * multiplier;
+        return value * randomGaussian;
     }
 
     private int doubleToInt(double d) {

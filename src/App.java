@@ -1,3 +1,4 @@
+
 import javanoise.noise.*;
 import javanoise.noise.fractal.*;
 

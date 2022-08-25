@@ -62,7 +62,7 @@ public class Gaussian extends Noise {
     public double get3DNoise(double x, double y, double z) {
         x *= frequency;
         y *= frequency;
-        x *= frequency;
+        z *= frequency;
 
         int xi = doubleToInt(x);
         int yi = doubleToInt(y);

@@ -329,6 +329,12 @@ public class Cellular extends Noise {
                 return distance1 * distance0 * 0.5 - 1;
             case DISTANCE_DIV:
                 return distance0 / distance1 - 1;
+            case DISTANCE_SQUARED:
+                return (distance0 * distance0 + distance1 * distance1) - 1;
+            case DISTANCE_MIN:
+                return (distance0 < distance1) ? distance0 - 1 : distance1 - 1;
+            case DISTANCE_MAX:
+                return (distance0 > distance1) ? distance0 - 1 : distance1 - 1;
             default:
                 return 0;
         }

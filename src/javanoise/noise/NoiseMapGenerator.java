@@ -25,6 +25,10 @@ public class NoiseMapGenerator {
         generateColorfulMap(noise, width, height, "Colorful " + noise.getClass().getSimpleName() + "Noise");
     }
 
+    public static void generateColorfulMap(Noise noise, int levels, int width, int height) {
+        generateColorfulMap(noise, levels, width, height, "Colorful " + noise.getClass().getSimpleName() + "Noise");
+    }
+
     public static void generateMap(Noise noise, int width, int height, String fileName) {
         try {
             ImageIO.write(generate(noise, width, height), "png", new File(fileName + ".png"));
@@ -59,6 +63,13 @@ public class NoiseMapGenerator {
     public static void generateColorfulMap(Noise noise, int width, int height, String fileName) {
         try {
             ImageIO.write(generateColorful(noise, width, height), "png", new File(fileName + ".png"));
+        } catch (IOException ex) {
+        }
+    }
+
+    public static void generateColorfulMap(Noise noise, int levels, int width, int height, String fileName) {
+        try {
+            ImageIO.write(generateColorful(noise, levels, width, height), "png", new File(fileName + ".png"));
         } catch (IOException ex) {
         }
     }

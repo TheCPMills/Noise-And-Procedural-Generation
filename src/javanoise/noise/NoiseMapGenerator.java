@@ -110,7 +110,7 @@ public class NoiseMapGenerator {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                int level = 255 * values[x][y] / (levels - 1);
+                int level = (levels <= 1) ? 0 : 255 * values[x][y] / (levels - 1);
                 int rgb = (level << 16) + (level << 8) + level;
                 image.setRGB(x, y, rgb);
             }
@@ -126,6 +126,20 @@ public class NoiseMapGenerator {
             for (int x = 0; x < width; x++) {
                 double value = values[x][y];
                 int hue = (int) ((value + 1) * 180);
+                image.setRGB(x, y, hsvToRGB(hue));
+            }
+        }
+        return image;
+    }
+
+    public static BufferedImage generateColorful(Noise noise, int levels, int width, int height) {
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        int[][] values = noise.generateValues(levels, width, height);
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                double levelPercent = values[x][y] / (double) levels;
+                int hue = (int) (levelPercent * 360);
                 image.setRGB(x, y, hsvToRGB(hue));
             }
         }

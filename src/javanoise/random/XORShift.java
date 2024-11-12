@@ -1,12 +1,11 @@
 package javanoise.random;
 
 public class XORShift extends RandomNumberGenerator {
-
     public XORShift(int seed) {
         super(seed);
     }
 
-    public double next() {
+    protected double nextBipolarUnitNormalized() {
         seed ^= (seed << 21);
         seed ^= (seed >>> 35);
         seed ^= (seed << 4);

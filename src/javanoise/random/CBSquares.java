@@ -21,7 +21,7 @@ public class CBSquares extends RandomNumberGenerator {
         }
     }
 
-    public double next() {
+    protected double nextBipolarUnitNormalized() {
         long x = counter++ * key;
         long y = x;
         long z = y + key;

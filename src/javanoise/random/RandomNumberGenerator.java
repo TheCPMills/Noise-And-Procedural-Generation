@@ -9,14 +9,18 @@ public abstract class RandomNumberGenerator {
         this.seed = seed;
     }
 
-    public abstract double next();
+    protected abstract double nextBipolarUnitNormalized(); // generates psuedo-random number in the bipolar unit normalized interval, [-1, 1)
+
+    public double next() { // generates psuedo-random number in the normalized unit interval, [0, 1)
+        return next(0, 1);
+    }
 
     public double next(double upperBound) {
         return next(0, upperBound);
     }
 
     public double next(double lowerBound, double upperBound) {
-        return lowerBound + ((next() + 1) * (upperBound - lowerBound)) / 2;
+        return lowerBound + ((nextBipolarUnitNormalized() + 1) * (upperBound - lowerBound)) / 2;
     }
 
     public double nextGaussian() {
@@ -26,8 +30,8 @@ public abstract class RandomNumberGenerator {
         } else {
             double v1, v2, s;
             do {
-                v1 = next();
-                v2 = next();
+                v1 = nextBipolarUnitNormalized();
+                v2 = nextBipolarUnitNormalized();
                 s = v1 * v1 + v2 * v2;
             } while (s >= 1 || s == 0);
             double multiplier = Math.sqrt(-2 * Math.log(s)/s);

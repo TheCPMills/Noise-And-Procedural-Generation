@@ -7,7 +7,7 @@ public class LCG extends RandomNumberGenerator {
         super(seed);
     }
 
-    public double next() {
+    protected double nextBipolarUnitNormalized() {
         seed = (int) ((seed * a + c) % m);
         return seed / 2147483629.0;
     }

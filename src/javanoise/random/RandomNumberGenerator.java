@@ -28,16 +28,11 @@ public abstract class RandomNumberGenerator {
             haveNextGaussian = false;
             return nextGaussian;
         } else {
-            double v1, v2, s;
-            do {
-                v1 = nextBipolarUnitNormalized();
-                v2 = nextBipolarUnitNormalized();
-                s = v1 * v1 + v2 * v2;
-            } while (s >= 1 || s == 0);
-            double multiplier = Math.sqrt(-2 * Math.log(s)/s);
-            nextGaussian = v2 * multiplier;
+            double v1 = next();
+            double v2 = next();
+            nextGaussian = Math.sqrt(-2 * Math.log(v2)) * Math.sin(2 * Math.PI * v1);
             haveNextGaussian = true;
-            return v1 * multiplier;
+            return Math.sqrt(-2 * Math.log(v1)) * Math.cos(2 * Math.PI * v2);
         }
     }
 

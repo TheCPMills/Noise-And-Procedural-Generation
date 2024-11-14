@@ -24,7 +24,6 @@ public class Gaussian extends Noise {
         setRandomNumberGenerator(rngType);
     }
 
-
     public Gaussian(int seed, Fractal fractalBase) {
         this(seed, RNGType.LCG, fractalBase);
     }
@@ -44,9 +43,6 @@ public class Gaussian extends Noise {
     }
 
     public double get2DNoise(double x, double y) {
-        x *= frequency;
-        y *= frequency;
-
         int xi = doubleToInt(x);
         int yi = doubleToInt(y);
 
@@ -54,7 +50,7 @@ public class Gaussian extends Noise {
         double canonicalValue = (Math.sin(seed + dotProduct) * 43758.5453) % 1;
 
         double value = value2D(seed, (int) (xi * canonicalValue), (int) (yi * canonicalValue));
-        double randomGaussian = rng.nextGaussian(0, 0.25);
+        double randomGaussian = Math.clamp(rng.nextGaussian(0.5, 0.1667), 0, 1);
         
         return value * randomGaussian;
     }
@@ -72,7 +68,7 @@ public class Gaussian extends Noise {
         double canonicalValue = (Math.sin(seed + dotProduct) * 43758.5453) % 1;
 
         double value = value3D(seed, (int) (xi * canonicalValue), (int) (yi * canonicalValue), (int) (zi * canonicalValue));
-        double randomGaussian = rng.nextGaussian(0, 0.25);
+        double randomGaussian = Math.clamp(rng.nextGaussian(0.5, 0.1667), 0, 1);
 
         return value * randomGaussian;
     }
@@ -87,6 +83,9 @@ public class Gaussian extends Noise {
             default:
             case LCG:
                 rng = new LCG(seed);
+                break;
+            case PCG:
+                rng = new PCG(seed);
                 break;
             case XORSHIFT:
                 rng = new XORShift(seed);

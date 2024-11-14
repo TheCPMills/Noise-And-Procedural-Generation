@@ -42,9 +42,6 @@ public class Value extends Noise{
     }
     
     public double get2DNoise(double x, double y) {
-        x *= frequency;
-        y *= frequency;
-
         int x0 = (x >= 0 ? (int) x : (int) x - 1);
         int y0 = (y >= 0 ? (int) y : (int) y - 1);
 

@@ -14,15 +14,14 @@ public class App {
         double frequency = 0.01;
         Fractal fractalBase = new FBM(5, 2.00, 0.5, 0.0f);
         Noise noise = new Perlin(seed, frequency, InterpolationType.HERMITE, fractalBase);
-
         NoiseMapGenerator.generateMap(noise, 256, 256, "Noisemap");
 
-        FileWriter fr = new FileWriter(new File("output.txt"));
-        RandomNumberGenerator rng = new LCG((int) System.nanoTime());
-        for (int i = 0; i < 1000; i++) {
-            double value = rng.nextGaussian(0, 0.25);
-            fr.write(value + "\n");
-        }
-        fr.close();
+        // FileWriter fr = new FileWriter(new File("output.txt"));
+        // RandomNumberGenerator rng = new LCG((int) System.nanoTime());
+        // for (int i = 0; i < 1000; i++) {
+        //     double value = rng.nextGaussian(0.5, 0.1667);
+        //     fr.write(value + ",");
+        // }
+        // fr.close();
     }
 }

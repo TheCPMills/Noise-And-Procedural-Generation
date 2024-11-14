@@ -1,5 +1,5 @@
 package javanoise.noise;
 
 public enum RNGType {
-    LCG, XORSHIFT, CBSQUARES;
+    LCG, PCG, XORSHIFT, CBSQUARES;
 }

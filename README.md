@@ -2,12 +2,13 @@
 
 ## Features
 
-- ### Five Noise Functions
+- ### Six Noise Functions
   - Guassian
   - Value
   - Cellular
   - Perlin
   - Simplex
+  - Preturbed
 
 - ### Four Fractal Modifiers
   - Fractal Brownian Motion (FBM)
@@ -15,8 +16,9 @@
   - Billow
   - Ping-Pong
 
-- ### Three Random Number Generators
+- ### Four Random Number Generators
   - Linear Congruential Generator (LCG)
+  - Permuted Congruential Generator (PCG)
   - XOR Shift
   - Counter-Based Middle Square Sequence (CBSquares)
 

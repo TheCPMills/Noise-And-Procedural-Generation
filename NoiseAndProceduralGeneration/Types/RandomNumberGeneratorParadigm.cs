@@ -1,0 +1,6 @@
+﻿namespace NoiseAndProceduralGeneration.Types;
+
+public enum RandomNumberGeneratorParadigm
+{
+    LINEAR_RECURRENCE, PERMUTED_RECURRENCE, MIDSQUARE_METHOD, COUNTER_BASED_HASHING, FEEDBACK_SHIFT_REGISTER, SCRAMBLED_LINEAR_ENGINE
+}

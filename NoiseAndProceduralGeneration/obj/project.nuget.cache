@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "V+1dsuRW9Ys=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Chase Miller\\Documents\\GitHub\\Noise-And-Procedural-Generation\\NoiseAndProceduralGeneration\\NoiseAndProceduralGeneration.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Chase Miller\\.nuget\\packages\\microsoft.win32.systemevents\\10.0.12\\microsoft.win32.systemevents.10.0.12.nupkg.sha512",
+    "C:\\Users\\Chase Miller\\.nuget\\packages\\system.drawing.common\\10.0.12\\system.drawing.common.10.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
